@@ -27,3 +27,9 @@ export const registerPushToken = async (token) => {
 export const unregisterPushToken = async () => {
   await apiClient.delete('/api/mobile/push-token');
 };
+
+// Public — no auth required. Used by PendingApprovalScreen before login.
+export const pollApproval = async (id) => {
+  const { data } = await apiClient.get(`/api/approvals/${id}/poll`);
+  return data; // { status, access_token?, refresh_token? }
+};

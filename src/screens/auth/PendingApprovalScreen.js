@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Alert } from 'react-native';
-import { getApprovalById, rejectRequest } from '../../services/approvalService';
+import { pollApproval, rejectRequest } from '../../services/approvalService';
 import { useAuth } from '../../context/AuthContext';
 import { colors } from '../../theme';
 
@@ -34,12 +34,12 @@ export default function PendingApprovalScreen({ navigation, route }) {
   const startPolling = () => {
     intervalRef.current = setInterval(async () => {
       try {
-        const approval = await getApprovalById(approvalRequestId);
-        if (approval.status === 'APPROVED') {
-          handleApproved(approval);
-        } else if (approval.status === 'REJECTED') {
+        const result = await pollApproval(approvalRequestId);
+        if (result.status === 'APPROVED') {
+          handleApproved(result);
+        } else if (result.status === 'REJECTED') {
           handleRejected();
-        } else if (approval.status === 'EXPIRED') {
+        } else if (result.status === 'EXPIRED') {
           handleExpire();
         }
       } catch {
@@ -53,10 +53,10 @@ export default function PendingApprovalScreen({ navigation, route }) {
     clearTimeout(timeoutRef.current);
   };
 
-  const handleApproved = async (approval) => {
+  const handleApproved = async (result) => {
     stopPolling();
-    if (actionType === 'LOGIN' && approval?.payload?.access_token) {
-      await loginWithTokens(approval.payload.access_token, approval.payload.refresh_token);
+    if (actionType === 'LOGIN' && result?.access_token) {
+      await loginWithTokens(result.access_token, result.refresh_token);
     } else {
       navigation.goBack();
     }
