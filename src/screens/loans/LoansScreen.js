@@ -13,11 +13,11 @@ import { getMyLoans } from '../../services/loanService';
 import { card, colors } from '../../theme';
 
 const LOAN_TYPE_LABELS = {
-  gotovinski:     'Gotovinski kredit',
-  stambeni:       'Stambeni kredit',
-  auto:           'Auto kredit',
-  refinansirajuci:'Refinansirajući kredit',
-  studentski:     'Studentski kredit',
+  CASH:        'Gotovinski kredit',
+  HOUSING:     'Stambeni kredit',
+  AUTO:        'Auto kredit',
+  REFINANCING: 'Refinansirajući kredit',
+  STUDENT:     'Studentski kredit',
 };
 
 const STATUS_COLORS = {

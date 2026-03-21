@@ -14,16 +14,16 @@ import { applyForLoan } from '../../services/loanService';
 import { card, colors } from '../../theme';
 
 const LOAN_TYPES = [
-  { value: 'gotovinski',      label: 'Gotovinski kredit' },
-  { value: 'stambeni',        label: 'Stambeni kredit' },
-  { value: 'auto',            label: 'Auto kredit' },
-  { value: 'refinansirajuci', label: 'Refinansirajući kredit' },
-  { value: 'studentski',      label: 'Studentski kredit' },
+  { value: 'CASH',        label: 'Gotovinski kredit' },
+  { value: 'HOUSING',     label: 'Stambeni kredit' },
+  { value: 'AUTO',        label: 'Auto kredit' },
+  { value: 'REFINANCING', label: 'Refinansirajući kredit' },
+  { value: 'STUDENT',     label: 'Studentski kredit' },
 ];
 
 const RATE_TYPES = [
-  { value: 'fiksna',      label: 'Fiksna' },
-  { value: 'varijabilna', label: 'Varijabilna' },
+  { value: 'FIXED',    label: 'Fiksna' },
+  { value: 'VARIABLE', label: 'Varijabilna' },
 ];
 
 const CURRENCIES = ['RSD', 'EUR', 'CHF', 'USD', 'GBP', 'JPY', 'CAD', 'AUD'];
@@ -35,11 +35,11 @@ const EMPLOYMENT_STATUSES = [
 ];
 
 const REPAYMENT_PERIODS = {
-  gotovinski:     [12, 24, 36, 48, 60, 72, 84],
-  stambeni:       [60, 120, 180, 240, 300, 360],
-  auto:           [12, 24, 36, 48, 60, 72, 84],
-  refinansirajuci:[12, 24, 36, 48, 60, 72, 84],
-  studentski:     [12, 24, 36, 48, 60, 72, 84],
+  CASH:        [12, 24, 36, 48, 60, 72, 84],
+  HOUSING:     [60, 120, 180, 240, 300, 360],
+  AUTO:        [12, 24, 36, 48, 60, 72, 84],
+  REFINANCING: [12, 24, 36, 48, 60, 72, 84],
+  STUDENT:     [12, 24, 36, 48, 60, 72, 84],
 };
 
 function OptionPicker({ label, options, selected, onSelect }) {
@@ -113,7 +113,7 @@ function PreviewCard({ preview }) {
 export default function LoanApplicationScreen({ navigation }) {
   const [accounts, setAccounts]           = useState([]);
   const [loanType, setLoanType]           = useState('');
-  const [rateType, setRateType]           = useState('fiksna');
+  const [rateType, setRateType]           = useState('FIXED');
   const [amount, setAmount]               = useState('');
   const [currency, setCurrency]           = useState('RSD');
   const [purpose, setPurpose]             = useState('');
@@ -293,7 +293,7 @@ const RATE_TIERS = [
   [500_000, 6.25], [1_000_000, 6.00], [2_000_000, 5.75],
   [5_000_000, 5.50], [10_000_000, 5.25], [20_000_000, 5.00], [Infinity, 4.75],
 ];
-const MARGINS = { gotovinski: 1.75, stambeni: 1.50, auto: 1.25, refinansirajuci: 1.00, studentski: 0.75 };
+const MARGINS = { CASH: 1.75, HOUSING: 1.50, AUTO: 1.25, REFINANCING: 1.00, STUDENT: 0.75 };
 // Rough RSD conversion for preview only (exact conversion done server-side)
 const APPROX_RSD = { RSD: 1, EUR: 117, USD: 108, CHF: 116, GBP: 136, JPY: 0.72, CAD: 80, AUD: 70 };
 
