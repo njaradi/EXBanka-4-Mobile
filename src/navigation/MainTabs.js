@@ -23,6 +23,9 @@ import ApprovalDetailScreen from '../screens/approvals/ApprovalDetailScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 import ExchangeRatesScreen from '../screens/exchange/ExchangeRatesScreen';
 import ExchangeCalculatorScreen from '../screens/exchange/ExchangeCalculatorScreen';
+import LoansScreen from '../screens/loans/LoansScreen';
+import LoanDetailScreen from '../screens/loans/LoanDetailScreen';
+import LoanApplicationScreen from '../screens/loans/LoanApplicationScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -74,6 +77,16 @@ function ApprovalsStack() {
   );
 }
 
+function LoansStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Loans"            component={LoansScreen}           options={{ title: 'Krediti' }} />
+      <Stack.Screen name="LoanDetail"       component={LoanDetailScreen}      options={{ title: 'Detalji kredita' }} />
+      <Stack.Screen name="LoanApplication"  component={LoanApplicationScreen} options={{ title: 'Zahtev za kredit' }} />
+    </Stack.Navigator>
+  );
+}
+
 function ExchangeStack() {
   return (
     <Stack.Navigator>
@@ -103,6 +116,7 @@ export default function MainTabs() {
       <Tab.Screen name="AccountsTab" component={AccountsStack} options={{ title: 'Računi' }} />
       <Tab.Screen name="PaymentsTab" component={PaymentsStack} options={{ title: 'Plaćanja' }} />
       <Tab.Screen name="ApprovalsTab" component={ApprovalsStack} options={{ title: 'Verifikacija' }} />
+      <Tab.Screen name="LoansTab" component={LoansStack} options={{ title: 'Krediti' }} />
       <Tab.Screen name="ExchangeTab" component={ExchangeStack} options={{ title: 'Menjačnica' }} />
       <Tab.Screen name="ProfileTab" component={ProfileStack} options={{ title: 'Profil' }} />
     </Tab.Navigator>
