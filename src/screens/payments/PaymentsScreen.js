@@ -193,6 +193,9 @@ export default function PaymentsScreen({ navigation }) {
         <TouchableOpacity style={[styles.actionBtn, styles.actionBtnOutline]} onPress={() => navigation.navigate('Transfers')}>
           <Text style={[styles.actionBtnText, styles.actionBtnOutlineText]}>Istorija</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={[styles.actionBtn, styles.actionBtnOutline]} onPress={() => navigation.navigate('Recipients')}>
+          <Text style={[styles.actionBtnText, styles.actionBtnOutlineText]}>Primaoci</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={[styles.filterToggle, hasFilters && styles.filterToggleActive]}
           onPress={() => setShowFilters(v => !v)}
