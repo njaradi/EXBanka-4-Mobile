@@ -28,6 +28,8 @@ import LoanDetailScreen from '../screens/loans/LoanDetailScreen';
 import LoanApplicationScreen from '../screens/loans/LoanApplicationScreen';
 import ExchangeRatesScreen from '../screens/exchange/ExchangeRatesScreen';
 import ExchangeCalculatorScreen from '../screens/exchange/ExchangeCalculatorScreen';
+import ExchangeHistoryScreen from '../screens/exchange/ExchangeHistoryScreen';
+import ExchangeConvertScreen from '../screens/exchange/ExchangeConvertScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
@@ -89,8 +91,10 @@ function MoreStack() {
       <Stack.Screen name="Loans"              component={LoansScreen}             options={{ title: 'Krediti' }} />
       <Stack.Screen name="LoanDetail"         component={LoanDetailScreen}        options={{ title: 'Detalji kredita' }} />
       <Stack.Screen name="LoanApplication"    component={LoanApplicationScreen}   options={{ title: 'Zahtev za kredit' }} />
-      <Stack.Screen name="ExchangeRates"      component={ExchangeRatesScreen}     options={{ title: 'Menjačnica' }} />
+      <Stack.Screen name="ExchangeRates"      component={ExchangeRatesScreen}      options={{ title: 'Menjačnica' }} />
       <Stack.Screen name="ExchangeCalculator" component={ExchangeCalculatorScreen} options={{ title: 'Kalkulator' }} />
+      <Stack.Screen name="ExchangeHistory"    component={ExchangeHistoryScreen}    options={{ title: 'Istorija konverzija' }} />
+      <Stack.Screen name="ExchangeConvert"    component={ExchangeConvertScreen}    options={{ title: 'Konverzija valuta' }} />
       <Stack.Screen name="Profile"            component={ProfileScreen}           options={{ title: 'Profil' }} />
     </Stack.Navigator>
   );

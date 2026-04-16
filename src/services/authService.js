@@ -15,3 +15,15 @@ export const getMe = async () => {
   const { data } = await apiClient.get('/client/me');
   return data;
 };
+
+export const forgotPassword = async (email) => {
+  await apiClient.post('/auth/forgot-password', { email });
+};
+
+export const resetPassword = async (token, password, confirmPassword) => {
+  await apiClient.post('/auth/reset-password', {
+    token,
+    password,
+    confirm_password: confirmPassword,
+  });
+};
