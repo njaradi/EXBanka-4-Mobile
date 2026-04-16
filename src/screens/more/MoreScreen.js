@@ -2,10 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from '../../theme';
 
 const ITEMS = [
-  { label: 'Verifikacija',  screen: 'Approvals' },
-  { label: 'Krediti',       screen: 'Loans' },
-  { label: 'Menjačnica',    screen: 'ExchangeRates' },
-  { label: 'Profil',        screen: 'Profile' },
+  { label: 'Verifikacija',           screen: 'Approvals' },
+  { label: 'Krediti',                screen: 'Loans' },
+  { label: 'Menjačnica',             screen: 'ExchangeRates' },
+  { label: 'Hartije od vrednosti',   screen: 'Securities' },
+  { label: 'Profil',                 screen: 'Profile' },
 ];
 
 export default function MoreScreen({ navigation }) {
