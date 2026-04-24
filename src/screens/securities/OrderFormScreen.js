@@ -69,7 +69,7 @@ function AccountPicker({ accounts, selected, onSelect }) {
 }
 
 export default function OrderFormScreen({ route, navigation }) {
-  const { security, direction: initialDirection } = route.params;
+  const { security, direction: initialDirection, maxAmount } = route.params;
 
   const [direction, setDirection] = useState(initialDirection ?? 'BUY');
   const [quantity, setQuantity]   = useState('');
@@ -96,6 +96,10 @@ export default function OrderFormScreen({ route, navigation }) {
     if (!selectedAcc) { setError('Izaberite račun.'); return; }
     const qty = parseInt(quantity, 10);
     if (!quantity || isNaN(qty) || qty <= 0) { setError('Unesite ispravnu količinu.'); return; }
+    if (direction === 'SELL' && maxAmount != null && qty > maxAmount) {
+      setError(`Ne možete prodati više od ${maxAmount} ${qty === 1 ? 'hartije' : 'hartija'}.`);
+      return;
+    }
     setError(null);
 
     const limitNum = limitValue ? parseFloat(limitValue) : undefined;
@@ -169,7 +173,9 @@ export default function OrderFormScreen({ route, navigation }) {
 
         {/* Quantity */}
         <View>
-          <Text style={styles.label}>KOLIČINA</Text>
+          <Text style={styles.label}>
+            KOLIČINA{direction === 'SELL' && maxAmount != null ? <Text style={styles.optional}> (max {maxAmount})</Text> : null}
+          </Text>
           <TextInput
             style={styles.input}
             keyboardType="number-pad"

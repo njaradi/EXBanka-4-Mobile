@@ -35,6 +35,7 @@ import SecuritiesScreen from '../screens/securities/SecuritiesScreen';
 import SecurityDetailScreen from '../screens/securities/SecurityDetailScreen';
 import OrderFormScreen from '../screens/securities/OrderFormScreen';
 import OrderResultScreen from '../screens/securities/OrderResultScreen';
+import PortfolioScreen from '../screens/portfolio/PortfolioScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -104,6 +105,7 @@ function MoreStack() {
       <Stack.Screen name="SecurityDetail"     component={SecurityDetailScreen}    options={({ route }) => ({ title: route.params?.ticker ?? 'Detalji' })} />
       <Stack.Screen name="OrderForm"          component={OrderFormScreen}         options={{ title: 'Novi nalog' }} />
       <Stack.Screen name="OrderResult"        component={OrderResultScreen}       options={{ title: 'Nalog poslat', headerBackVisible: false }} />
+      <Stack.Screen name="Portfolio"          component={PortfolioScreen}         options={{ title: 'Moj portfolio' }} />
     </Stack.Navigator>
   );
 }
