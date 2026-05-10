@@ -103,6 +103,7 @@ export default function LoginScreen({ navigation }) {
               ? <ActivityIndicator color="#fff" />
               : <Text style={styles.buttonText}>PRIJAVI SE</Text>}
           </TouchableOpacity>
+
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

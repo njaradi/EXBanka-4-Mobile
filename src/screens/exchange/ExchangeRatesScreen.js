@@ -122,12 +122,20 @@ export default function ExchangeRatesScreen({ navigation }) {
         contentContainerStyle={styles.list}
       />
 
-      <TouchableOpacity
-        style={styles.calcBtn}
-        onPress={() => navigation.navigate('ExchangeCalculator')}
-      >
-        <Text style={styles.calcBtnText}>Otvori kalkulator</Text>
-      </TouchableOpacity>
+      <View style={styles.btnRow}>
+        <TouchableOpacity
+          style={[styles.calcBtn, { flex: 1 }]}
+          onPress={() => navigation.navigate('ExchangeCalculator')}
+        >
+          <Text style={styles.calcBtnText}>Kalkulator</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.calcBtn, styles.historyBtn, { flex: 1 }]}
+          onPress={() => navigation.navigate('ExchangeHistory')}
+        >
+          <Text style={[styles.calcBtnText, { color: colors.primary }]}>Istorija</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -231,12 +239,21 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
   },
-  calcBtn: {
+  btnRow: {
+    flexDirection: 'row',
+    gap: 8,
     margin: 16,
+  },
+  calcBtn: {
     paddingVertical: 14,
     backgroundColor: colors.primary,
     borderRadius: 10,
     alignItems: 'center',
+  },
+  historyBtn: {
+    backgroundColor: colors.bgSurface,
+    borderWidth: 1,
+    borderColor: colors.primary,
   },
   calcBtnText: {
     color: '#fff',

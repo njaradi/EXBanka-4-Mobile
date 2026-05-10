@@ -13,3 +13,17 @@ export const previewConversion = async ({ fromCurrency, toCurrency, amount }) =>
   });
   return data;
 };
+
+export const convertAmount = async ({ fromAccount, toAccount, amount }) => {
+  const { data } = await apiClient.post('/exchange/convert', {
+    fromAccount,
+    toAccount,
+    amount,
+  });
+  return data;
+};
+
+export const getExchangeHistory = async () => {
+  const { data } = await apiClient.get('/exchange/history');
+  return data;
+};

@@ -50,17 +50,20 @@ function BalanceBar({ amount, available }) {
 }
 
 export default function NewPaymentScreen({ route, navigation }) {
-  const prefillFromAccount   = route.params?.fromAccount   ?? '';
-  const prefillRecipientName = route.params?.recipientName ?? '';
-  const prefillRecipientAcc  = route.params?.recipientAccount ?? '';
-
   const [accounts, setAccounts]     = useState([]);
   const [recipients, setRecipients] = useState([]);
   const [loadingInit, setLoadingInit] = useState(true);
 
-  const [fromAccount, setFromAccount]           = useState(prefillFromAccount);
-  const [recipientName, setRecipientName]       = useState(prefillRecipientName);
-  const [recipientAccount, setRecipientAccount] = useState(prefillRecipientAcc);
+  const [fromAccount, setFromAccount]           = useState(route.params?.fromAccount ?? '');
+  const [recipientName, setRecipientName]       = useState(route.params?.recipientName ?? '');
+  const [recipientAccount, setRecipientAccount] = useState(route.params?.recipientAccount ?? '');
+
+  useEffect(() => {
+    setRecipientName(route.params?.recipientName ?? '');
+    setRecipientAccount(route.params?.recipientAccount ?? '');
+    setStep('form');
+    setError(null);
+  }, [route.params?.recipientName, route.params?.recipientAccount]);
   const [amount, setAmount]                     = useState('');
   const [paymentCode, setPaymentCode]           = useState('289');
   const [referenceNumber, setReferenceNumber]   = useState('');

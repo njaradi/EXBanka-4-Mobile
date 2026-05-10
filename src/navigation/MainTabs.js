@@ -28,7 +28,14 @@ import LoanDetailScreen from '../screens/loans/LoanDetailScreen';
 import LoanApplicationScreen from '../screens/loans/LoanApplicationScreen';
 import ExchangeRatesScreen from '../screens/exchange/ExchangeRatesScreen';
 import ExchangeCalculatorScreen from '../screens/exchange/ExchangeCalculatorScreen';
+import ExchangeHistoryScreen from '../screens/exchange/ExchangeHistoryScreen';
+import ExchangeConvertScreen from '../screens/exchange/ExchangeConvertScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
+import SecuritiesScreen from '../screens/securities/SecuritiesScreen';
+import SecurityDetailScreen from '../screens/securities/SecurityDetailScreen';
+import OrderFormScreen from '../screens/securities/OrderFormScreen';
+import OrderResultScreen from '../screens/securities/OrderResultScreen';
+import PortfolioScreen from '../screens/portfolio/PortfolioScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -89,9 +96,16 @@ function MoreStack() {
       <Stack.Screen name="Loans"              component={LoansScreen}             options={{ title: 'Krediti' }} />
       <Stack.Screen name="LoanDetail"         component={LoanDetailScreen}        options={{ title: 'Detalji kredita' }} />
       <Stack.Screen name="LoanApplication"    component={LoanApplicationScreen}   options={{ title: 'Zahtev za kredit' }} />
-      <Stack.Screen name="ExchangeRates"      component={ExchangeRatesScreen}     options={{ title: 'Menjačnica' }} />
+      <Stack.Screen name="ExchangeRates"      component={ExchangeRatesScreen}      options={{ title: 'Menjačnica' }} />
       <Stack.Screen name="ExchangeCalculator" component={ExchangeCalculatorScreen} options={{ title: 'Kalkulator' }} />
+      <Stack.Screen name="ExchangeHistory"    component={ExchangeHistoryScreen}    options={{ title: 'Istorija konverzija' }} />
+      <Stack.Screen name="ExchangeConvert"    component={ExchangeConvertScreen}    options={{ title: 'Konverzija valuta' }} />
       <Stack.Screen name="Profile"            component={ProfileScreen}           options={{ title: 'Profil' }} />
+      <Stack.Screen name="Securities"         component={SecuritiesScreen}        options={{ title: 'Hartije od vrednosti' }} />
+      <Stack.Screen name="SecurityDetail"     component={SecurityDetailScreen}    options={({ route }) => ({ title: route.params?.ticker ?? 'Detalji' })} />
+      <Stack.Screen name="OrderForm"          component={OrderFormScreen}         options={{ title: 'Novi nalog' }} />
+      <Stack.Screen name="OrderResult"        component={OrderResultScreen}       options={{ title: 'Nalog poslat', headerBackVisible: false }} />
+      <Stack.Screen name="Portfolio"          component={PortfolioScreen}         options={{ title: 'Moj portfolio' }} />
     </Stack.Navigator>
   );
 }

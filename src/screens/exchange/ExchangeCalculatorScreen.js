@@ -164,7 +164,9 @@ export default function ExchangeCalculatorScreen() {
           <Text style={styles.resultTitle}>Rezultat konverzije</Text>
           <ResultRow
             label="Kurs"
-            value={`1 ${result.fromCurrency} = ${fmtAmt(result.rate, 4)} ${result.toCurrency}`}
+            value={result.fromCurrency === 'RSD'
+              ? `1 ${result.toCurrency} = ${fmtAmt(result.rate, 4)} RSD`
+              : `1 ${result.fromCurrency} = ${fmtAmt(result.rate, 4)} ${result.toCurrency}`}
           />
           <ResultRow
             label={`Provizija (0.5%)`}

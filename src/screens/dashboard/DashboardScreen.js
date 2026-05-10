@@ -207,7 +207,6 @@ export default function DashboardScreen({ navigation }) {
       <View style={styles.quickRow}>
         <QuickAction label="Novo plaćanje" onPress={() => navigation.navigate('PaymentsTab', { screen: 'NewPayment' })} />
         <QuickAction label="Transfer"      onPress={() => navigation.navigate('PaymentsTab', { screen: 'NewTransfer' })} />
-        <QuickAction label="Menjačnica"    onPress={() => navigation.navigate('MoreTab', { screen: 'ExchangeRates' })} />
       </View>
 
       {recipients.length > 0 && (
@@ -222,7 +221,7 @@ export default function DashboardScreen({ navigation }) {
             renderItem={({ item }) => (
               <RecipientChip
                 recipient={item}
-                onPress={() => navigation.navigate('PaymentsTab', { screen: 'NewPayment', params: { recipient: item } })}
+                onPress={() => navigation.navigate('PaymentsTab', { screen: 'NewPayment', params: { recipientName: item.name, recipientAccount: item.accountNumber } })}
               />
             )}
           />

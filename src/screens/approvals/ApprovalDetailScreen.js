@@ -3,6 +3,7 @@ import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, ActivityIndicator, Alert,
 } from 'react-native';
+import * as LocalAuthentication from 'expo-local-authentication';
 import { getApprovalById, approveRequest, rejectRequest } from '../../services/approvalService';
 import { colors, status as statusColors, card } from '../../theme';
 
@@ -91,6 +92,18 @@ export default function ApprovalDetailScreen({ navigation, route }) {
   useEffect(() => { fetchApproval(); }, [fetchApproval]);
 
   const handleApprove = async () => {
+    const hasHardware = await LocalAuthentication.hasHardwareAsync();
+    const isEnrolled = await LocalAuthentication.isEnrolledAsync();
+
+    if (hasHardware && isEnrolled) {
+      const result = await LocalAuthentication.authenticateAsync({
+        promptMessage: 'Potvrdite identitet da biste odobrili zahtev',
+        cancelLabel: 'Otkaži',
+        disableDeviceFallback: false,
+      });
+      if (!result.success) return;
+    }
+
     setActionLoading('approve');
     try {
       await approveRequest(approvalId);
